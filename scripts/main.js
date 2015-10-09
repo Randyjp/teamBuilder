@@ -115,28 +115,35 @@ var Main = {
         }
         firstDdl.selectedIndex = 0; //get the dummy option
         players.resetCount();
+        Main.loadDummyImg();
     },
 
     deleteLast: function(){
+        if(players.getCount() < 1) return;
         var div = document.getElementById("selectDiv");
         var divImg = document.getElementById("images");
-        var lastImg = divImg.lastChild;
+        var lastImg = divImg.firstChild;
         var lastDdl = div.lastChild;
         //console.log(lastImg);
         if(lastImg !== null) divImg.removeChild(lastImg);
         lastDdl.selectedIndex = 0;
         players.add(-1); //substract one to the actual number of players left
-
+        var img = document.createElement("img");
+        img.setAttribute("src", "img/players/empty.jpg");
+        img.setAttribute("height", "135");
+        img.setAttribute("width", "90");
+        divImg.appendChild(img);
     },
 
     loadDummyImg: function(){
         var num = parseInt(players.getMaxPlayers(),10);
+        var imgDiv = document.getElementById("images");
         while(num > 0){
             var img = document.createElement("img");
             img.setAttribute("src", "img/players/empty.jpg");
             img.setAttribute("height", "135");
             img.setAttribute("width", "90");
-            document.getElementById("images").appendChild(img);
+            imgDiv.appendChild(img);
             num--;
         }
     },
