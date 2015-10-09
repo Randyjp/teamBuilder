@@ -1,3 +1,43 @@
-.playerImg{
-    opacity: 0.1;
+select {
+
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border-radius: 0;
+    height: 34px;
+    border: 1px solid #ccc;
+}
+
+div{
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+}
+
+img{
+    margin-right: 2%;
+    padding:1px;
+    border:1px solid #021a40;
+    background-color: #061924;
+
+}
+
+body{
+    background-color: #fafafa;
+}
+
+
+.button-success,
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+    background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-secondary {
+    background: rgb(66, 184, 221);
 }

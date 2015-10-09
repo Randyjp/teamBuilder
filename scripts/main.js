@@ -7,8 +7,10 @@ var Main = {
         var ddl = document.createElement("select");
         var prop;
         var option = document.createElement("option");
-        option.setAttribute("value", "select");
         var text = document.createTextNode("Select");
+
+        ddl.setAttribute("class", "pure-u-1-6 pure-input-1-2");
+        option.setAttribute("value", "select");
         option.appendChild(text);
         ddl.appendChild(option);
         ddl.addEventListener("change", this.changer, false);

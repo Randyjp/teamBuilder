@@ -12,23 +12,41 @@
     <script type="text/javascript" src="scripts/cookies.js"></script>
 </head>
 <body>
-    <h1>Find your ideal baseball player</h1>
-    <div id="selectDiv"></div>
-    <div id="images"></div>
-    <div id="success"></div>
-    <div id="buttons">
-        <button id="btnDelete">Delete last</button>
-        <button id="btnRestart">Restart</button>
-        <a href="index.html">Main Form</a>
+<div id="layout" class="pure-g">
+
+    <div id="side" class="pure-u-1-5 pure-u-md-1-4"></div>
+
+    <div id="center" class="pure-u-4-5 pure-u-md-3-4">
+
+        <div id="header">
+            <h1>Find your ideal baseball player</h1>
+
+            <div id="selectDiv" class="pure-g"></div>
+        </div>
+
+
+        <div id="images"></div>
+
+
+        <div id="success"></div>
+
+
+        <div id="buttons" class="">
+            <button id="btnDelete" class="pure-button button-secondary">Delete last</button>
+            <button id="btnRestart" class="pure-button pure-button-primary">Restart</button>
+            <a href="index.html" class="pure-button button-success">Main Form</a>
+        </div>
+
     </div>
-    <script>
-        var players = Main.playersNumber;
-        Main.begin("start");
-        document.getElementById("btnRestart").addEventListener("click",Main.restart,false);
-        document.getElementById("btnDelete").addEventListener("click",Main.deleteLast,false);
-        //console.log(BrowserDetect.init());
-        //getJson("pitcher");
-        //document.body.appendChild(createDropDown(getJson("pitcher")));
-    </script>
+</div>
+<script>
+    var players = Main.playersNumber;
+    Main.begin("start");
+    document.getElementById("btnRestart").addEventListener("click", Main.restart, false);
+    document.getElementById("btnDelete").addEventListener("click", Main.deleteLast, false);
+    //console.log(BrowserDetect.init());
+    //getJson("pitcher");
+    //document.body.appendChild(createDropDown(getJson("pitcher")));
+</script>
 </body>
 </html>
