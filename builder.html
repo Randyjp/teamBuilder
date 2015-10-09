@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baseball player Selector</title>
+    <script type="text/javascript" src="scripts/browserDetect.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <script type="text/javascript" src="scripts/json.js"></script>
+    <script type="text/javascript" src="scripts/cookies.js"></script>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <h1>Find your ideal baseball player</h1>
+    <div id="selectDiv"></div>
+    <div id="images"></div>
+    <div id="success"></div>
+    <div id="buttons">
+        <button id="btnDelete">Delete last</button>
+        <button id="btnRestart">Restart</button>
+        <a href="index.html">Main Form</a>
+    </div>
+    <script>
+        var players = Main.playersNumber;
+        Main.begin("start");
+        document.getElementById("btnRestart").addEventListener("click",Main.restart,false);
+        document.getElementById("btnDelete").addEventListener("click",Main.deleteLast,false);
+        //console.log(BrowserDetect.init());
+        //getJson("pitcher");
+        //document.body.appendChild(createDropDown(getJson("pitcher")));
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Builder</title>
+    <link href="css/form.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="scripts/cookies.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <script>
+        function validate(){
+            //var valid = true;
+            var name = document.getElementById("txtname").value;
+            var email = document.getElementById("txtemail").value;
+            var team = document.getElementById("txtteam").value;
+            var numberPlayers = document.getElementById("txtplayers").value;
+            var msg = [];
+            if(name){
+                msg.push( "Name can't be empty");
+            }
+            if(email){
+                msg.push( "Email can't be empty");
+            }
+            if(team){
+                msg.push( "Tea, can't be empty");
+            }
+            if(numberPlayers){
+                msg.push( "Number of players can't be empty");
+            }
+            if(isNaN(numberPlayers) || parseInt(numberPlayers,10) < 1){
+                msg.push( "Number of players has to be a number greater and than 0");
+            }
+            else {
+                //console.log("toy aqui");
+                store(name, email, team, numberPlayers);
+                window.location = "builder.html";
+                //window.opener.location.href = "https://www.google.com/chrome";
+                //window.location.href = "https://www.google.com/chrome";
+                //window.location.
+                return false;
+            }
+            if(msg.length < 1)return true;
+            else return false;
+        }
+
+        function store(name,email,team,numberPlayers){
+            //email will be stored in cookies because emails are sent by the server even if this
+            //applications does not sends emails in reality.
+            //DeleteCookie("email");
+            SetCookie("email",email);
+            SetCookie("name",name);
+            localStorage.setItem("team",team);
+            localStorage.setItem("numberOfPlayers",numberPlayers);
+        }
+    </script>
+</head>
+<body>
+    <form action="index.html" method="post" id="form1" onsubmit="return validate();" name="index_form" class="index_form">
+        <ul>
+            <li>
+                <span class="required_notification">* Denotes Required Field</span>
+                <h2>Welcome to team builder</h2>
+                <div>Fill the form below a we will start the makign of your ideal MLB team!!</div>
+            </li>
+            <li>
+                <label for="txtname">Name:</label>
+                <input type="text" name="txtname" id="txtname" placeholder="John Doe" required pattern="^([ \u00c0-\u01ffa-zA-Z'])+$">
+            </li>
+            <li>
+                <label for="txtemail">E-mail:</label>
+                <input type="email" name="txtemail" id="txtemail" placeholder="example@gmail.com" required pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$">
+            </li>
+            <li>
+                <label for="txtteam">Favorite Team:</label>
+                <input type="text" name="txtemail" id="txtteam" placeholder="Team name">
+            </li>
+            <li>
+                <label for="txtplayers">Number of Players:</label>
+                <input type="number" name="txtplayers" id="txtplayers" required placeholder="9">
+            </li>
+            <li>
+                <button value="Rest"  type="reset" name="reset" class="submit reset">Reset</button>
+                <button value="Begin" type="submit" class="submit" name="submit">Submit</button>
+            </li>
+
+        </ul>
+    </form>
+    <script>
+//       document.getElementById("form1").addEventListener("submit",function(){
+//          return validate();
+//       },false);
+    </script>
+</body>
+</html>
