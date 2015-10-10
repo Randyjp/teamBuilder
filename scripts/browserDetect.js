@@ -29,19 +29,19 @@ var BrowserDetect = {
 	},
     redirectRule: function (browser,version) {
         if(browser === "Safari"){
-            window.location = "https://www.google.com/chrome";
+            window.location = "error.html";
         }
         else if(browser === "Explorer" && parseInt(version,10) < 9 ){
-            window.location = "https://www.google.com/chrome";
+            window.location = "error.html";
         }
         else if(browser === "Chrome" && parseInt(version,10) < 23 ){
-            window.location = "https://www.google.com/chrome";
+            window.location = "error.html";
         }
         else if(browser === "Firefox" && parseInt(version,10) < 10 ){
-            window.location = "https://www.google.com/chrome";
+            window.location = "error.html";
         }
         else if(browser === "Opera" && parseInt(version,10) < 15 ){
-            window.location = "https://www.google.com/chrome";
+            window.location = "error.html";
         }
 
     },

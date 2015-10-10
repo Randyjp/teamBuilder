@@ -1,8 +1,9 @@
 /**
  * Created by randyjp on 10/4/15.
+ * Main file with all the core functionality of my application
  */
-//generic function create a dropdown menue.
 var Main = {
+    //function that creates the drop downs, the information comes from Json files read by ajax
     createDropDown: function (data) {
         var ddl = document.createElement("select");
         var prop;
@@ -15,7 +16,6 @@ var Main = {
         ddl.appendChild(option);
         ddl.addEventListener("change", this.changer, false);
 
-        //console.log(data);
         for (prop in data) {
             //console.log(prop);
             if (typeof  prop !== "function") {
@@ -47,23 +47,20 @@ var Main = {
         if (this.value.indexOf(".jpg") > -1) {
             //insertImg(this.value);
             if(players.getCount() < players.getMaxPlayers()){
-                //var img = document.createElement("img");
-                //img.setAttribute("src", "img/players/" + this.value);
-                //img.setAttribute("height", "135");
-                //img.setAttribute("width", "90");
-                //document.getElementById("images").appendChild(img);
+                var ddls = document.getElementsByTagName("select");
+                var option =[];
+
                 Main.loadImgFade(this.value);
                 players.add(1);
+                for(var i= 0; i < ddls.length;i++){
+                    option.push(ddls[i].value);
+                }
+                Main.printOptions(option);
             }
             if(players.getCount() === players.getMaxPlayers()){
                 Main.createSuccessMessage();
+                players.setSuccess(true);
             }
-            //else{
-            //    var img = document.createElement("img");
-            //    img.setAttribute("src", "img/players/" + this.value);
-            //    document.getElementById("images").appendChild(img);
-            //    players.add(1);
-            //}
         }
         else {
             getJson(this.value);
@@ -73,6 +70,7 @@ var Main = {
 
     playersNumber:(function(){
         var count = 0;
+        var success = false;
         var maxPlayers = parseInt(localStorage.getItem("numberOfPlayers"),10);
         return{
             add: function(number){
@@ -86,14 +84,44 @@ var Main = {
             },
             resetCount:function(){
                 count = 0;
+            },
+            setSuccess: function (value) {
+                success = value;
+            },
+            getSuccess:function(){
+                return success;
             }
         }
     }()),
 
     createSuccessMessage: function(){
         //console.log("aki");
+        //var div = document.getElementById("success");
+        //var heading = document.createElement("h2");
+        //var headingText = document.createTextNode("Congratulations " + GetCookie("name"));
+        //var para = document.createElement("p");
+        //var pText = document.createTextNode("Your team with " + players.getMaxPlayers() + " players was created successfully." +
+        //    " We will e-mail your dream team to " + GetCookie("email"));
+        //para.appendChild(pText);
+        //
+        //heading.appendChild(headingText);
+        //div.appendChild(heading);
+        //div.appendChild(para);
+
+        'use strict';
+        var modal = new RvVanillaModal({
+            showOverlay: true
+        });
+
         var div = document.getElementById("success");
-        var heading = document.createElement("h2");
+        if(players.getSuccess()){ //div.childElementCount >1
+            modal.open(div);
+            return;
+        }
+        var divBody = document.createElement("div");
+        divBody.setAttribute("class","rv-vanilla-modal-body");
+
+        var heading = document.createElement("h3");
         var headingText = document.createTextNode("Congratulations " + GetCookie("name"));
         var para = document.createElement("p");
         var pText = document.createTextNode("Your team with " + players.getMaxPlayers() + " players was created successfully." +
@@ -101,8 +129,18 @@ var Main = {
         para.appendChild(pText);
 
         heading.appendChild(headingText);
-        div.appendChild(heading);
-        div.appendChild(para);
+        divBody.appendChild(heading);
+        divBody.appendChild(para);
+        div.appendChild(divBody);
+
+
+        var closeBtn = div.querySelector(modal.settings.closeSelector)
+        closeBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            modal.close(div);
+        });
+
+        modal.open(div);
     },
 
     restart: function(){
@@ -117,7 +155,9 @@ var Main = {
         }
         firstDdl.selectedIndex = 0; //get the dummy option
         players.resetCount();
+        //players.setSuccess(false);
         Main.loadDummyImg();
+        Main.deleteOption();
     },
 
     deleteLast: function(){
@@ -130,11 +170,13 @@ var Main = {
         if(lastImg !== null) divImg.removeChild(lastImg);
         lastDdl.selectedIndex = 0;
         players.add(-1); //substract one to the actual number of players left
+        //players.setSuccess(false);
         var img = document.createElement("img");
         img.setAttribute("src", "img/players/empty.jpg");
         img.setAttribute("height", "135");
         img.setAttribute("width", "90");
         divImg.appendChild(img);
+        Main.deleteOption();
     },
 
     loadDummyImg: function(){
@@ -168,6 +210,29 @@ var Main = {
                 clearInterval(interval);
             }
         },125);
+    },
+
+    printOptions: function(array){
+        Main.deleteOption();
+        var options = array;
+        var optionsDiv = document.getElementById("options");
+        var ul = document.createElement("ul");
+        ul.setAttribute("class","mylist");
+        for(var i=0;i< options.length;i++){
+            var li = document.createElement("li");
+            var liText = document.createTextNode(options[i]);
+            li.appendChild(liText);
+            li.setAttribute("class","myli");
+            ul.appendChild(li);
+        }
+        optionsDiv.appendChild(ul);
+    },
+
+    deleteOption:function(){
+        var optionsDiv = document.getElementById("options");
+        var ul = optionsDiv.getElementsByTagName("ul")[0];
+        if(!ul) return;
+        optionsDiv.removeChild(ul);
     }
 
     //insertImg: function (imgName) {

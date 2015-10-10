@@ -5,16 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Baseball player Selector</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" type="text/css" >
+    <link href="css/vanilla_modal.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="scripts/browserDetect.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/json.js"></script>
     <script type="text/javascript" src="scripts/cookies.js"></script>
+    <script type="text/javascript" src="scripts/rv-vanilla-modal.js"></script>
 </head>
 <body>
 <div id="layout" class="pure-g">
+    <div id="" class="pure-u-1-5 pure-u-md-1-4">
 
-    <div id="side" class="pure-u-1-5 pure-u-md-1-4"></div>
+    </div>
+    <div class="pure-u-4-5 pure-u-md-1-4">
+        <img src="img/fantasylabs_blue.png" width="629" height="146" class="pure-img">
+    </div>
+    <div id="side" class="pure-u-1-5 pure-u-md-1-4">
+
+    </div>
 
     <div id="center" class="pure-u-4-5 pure-u-md-3-4">
 
@@ -28,7 +37,12 @@
         <div id="images"></div>
 
 
-        <div id="success"></div>
+        <div id="success" class="rv-vanilla-modal">
+            <div class="rv-vanilla-modal-header group">
+                <button class="rv-vanilla-modal-close"><span class="text">×</span></button>
+                <h2 class="rv-vanilla-modal-title">Well Done!</h2>
+            </div>
+        </div>
 
 
         <div id="buttons" class="">
@@ -37,6 +51,7 @@
             <a href="index.html" class="pure-button button-success">Main Form</a>
         </div>
 
+        <div id="options"></div>
     </div>
 </div>
 <script>

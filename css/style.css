@@ -9,23 +9,22 @@ select {
     border: 1px solid #ccc;
 }
 
-div{
+div {
     margin-top: 1.5%;
     margin-bottom: 1.5%;
 }
 
-img{
+img {
     margin-right: 2%;
-    padding:1px;
-    border:1px solid #021a40;
+    padding: 1px;
+    border: 1px solid #021a40;
     background-color: #061924;
 
 }
 
-body{
+body {
     background-color: #fafafa;
 }
-
 
 .button-success,
 .button-secondary {
@@ -40,4 +39,37 @@ body{
 
 .button-secondary {
     background: rgb(66, 184, 221);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+    border-bottom: 1px solid #ccc;
+}
+
+li:last-child {
+    border: none;
+}
+
+li a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+    width: 200px;
+
+    -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+
+li a:hover {
+    font-size: 30px;
+    background: #f6f6f6;
 }

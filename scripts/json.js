@@ -19,7 +19,7 @@ function readJson(fileName,callback){
 }
 
 function getJson(filename){
-    var result;
+    //rervar result;
     readJson(filename,function(data){
         document.getElementById("selectDiv").appendChild(Main.createDropDown(data));
     });
